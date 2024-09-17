@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1>This is Home page</h1>
+
+    {% for cat in category %}
+        <h1>{{cat.name}}</h1>
+
+        <div class="cards" style="display: flex; flex-wrap: wrap;">
+
+            {% for i in cat.menu_set.all %}
+                <div class="card" style="border: 1px solid gray; padding: 2rem; margin: 10px; border-radius: 10px; width: 20rem;">
+                    <img src="{{ i.image.url }}" alt="" width="250" >
+                    <h5>{{i}}</h5>
+                    <p>{{i.desc}}</p>
+                    <h5>Rs {{i.price}}</h5>
+                    <a href="{% url 'addcart' i.id %}" class="btn btn-danger">Add to cart</a>
+                </div>    
+            {% endfor %}
+        </div>
+
+    {% endfor %}
+
+{% endblock content %}
